@@ -19,6 +19,14 @@ class RatingResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getModelLabel():string{
+        return'Rating';
+    }
+
+    public static function getPluralModelLabel():string{
+        return 'Rating';
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -35,9 +43,13 @@ class RatingResource extends Resource
                     ->label('Komentar')
                     ->required()
                     ,
-                Forms\Components\TextInput::make('gambar_produk')
-                    ->label('Gambar Produk')
-                    ,
+                Forms\Components\FileUpload::make('gambar_produk') 
+    ->label('Gambar Produk')
+    ->image() // Optimizes for image uploads
+    ->required() // Make the upload required
+    ->disk('public') // Choose the storage disk (e.g., 'public', 's3')
+    ->directory('product-images') // Specify the directory to store the images
+    ->visibility('public') // Set the visibility of the uploaded files
             
             ]);
     }
@@ -59,9 +71,12 @@ class RatingResource extends Resource
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('gambar_produk')
-                    ->label('Gambar Produk')
-                    ->sortable()
-                    ->searchable(),
+    ->label('Gambar Produk')
+    ->formatStateUsing(function (string $state) {
+        return basename($state); // Extract the filename from the path
+    })
+    ->sortable()
+    ->searchable(),
             ])
             ->filters([
                 //

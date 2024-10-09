@@ -19,6 +19,14 @@ class KategoriResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getModelLabel():string{
+        return'Kategori';
+    }
+
+    public static function getPluralModelLabel():string{
+        return 'Kategori';
+    }
+
     public static function form(Form $form): Form
     {
         return $form

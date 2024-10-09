@@ -19,6 +19,14 @@ class NotificationResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getModelLabel():string{
+        return'Notification';
+    }
+
+    public static function getPluralModelLabel():string{
+        return 'Notification';
+    }
+
     public static function form(Form $form): Form
     {
         return $form

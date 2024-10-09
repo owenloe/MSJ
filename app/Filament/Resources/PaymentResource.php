@@ -19,6 +19,14 @@ class PaymentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getModelLabel():string{
+        return'Payment';
+    }
+
+    public static function getPluralModelLabel():string{
+        return 'Payment';
+    }
+
     public static function form(Form $form): Form
     {
         return $form
