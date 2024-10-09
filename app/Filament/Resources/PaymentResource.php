@@ -82,10 +82,15 @@ class PaymentResource extends Resource
                     ->label('Alasan Komplain')
                     ->required()
                     ,
-                Forms\Components\TextInput::make('gambar_komplain')
-                    ->label('Gambar Komplain')
-                    ,
-            ]);
+                Forms\Components\FileUpload::make('gambar_komplain') 
+    ->label('Gambar Komplain')
+    ->image() // Optimizes for image uploads
+    ->required() // Make the upload required
+    ->disk('public') // Choose the storage disk (e.g., 'public', 's3')
+    ->directory('product-images') // Specify the directory to store the images
+    ->visibility('public') // Set the visibility of the uploaded files
+
+    ]);
     }
 
     public static function table(Table $table): Table
@@ -141,9 +146,12 @@ class PaymentResource extends Resource
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('gambar_komplain')
-                    ->label('Gambar Komplain')
-                    ->searchable()
-                    ->sortable(),
+    ->label('Gambar Komplain')
+    ->formatStateUsing(function (string $state) {
+        return basename($state); // Extract the filename from the path
+    })
+    ->sortable()
+    ->searchable(),
             ])
             ->filters([
                 //

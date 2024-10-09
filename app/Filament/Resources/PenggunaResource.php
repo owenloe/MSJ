@@ -73,7 +73,7 @@ class PenggunaResource extends Resource
                     ->label('Updated Time')
                     ->required()
                     ,
-                Forms\Components\TextInput::make('is_admin')
+                Forms\Components\Checkbox::make('is_admin')
                     ->label('An Admin')
                     ,
             ]);
