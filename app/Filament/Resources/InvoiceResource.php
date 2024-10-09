@@ -56,7 +56,6 @@ class InvoiceResource extends Resource
                     ,
                 Forms\Components\TextInput::make('gambar_produk')
                     ->label('Gambar Produk')
-                    ->required()
                     ,
                 Forms\Components\TextInput::make('nama_bank')
                     ->label('Nama Bank')

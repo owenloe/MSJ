@@ -65,7 +65,6 @@ class ProdukResource extends Resource
                     ,
                 Forms\Components\TextInput::make('image')
                     ->label('Image')
-                    ->required()
                     ,
                 Forms\Components\DateTimePicker::make('created_at')
                     ->label('Created Time')

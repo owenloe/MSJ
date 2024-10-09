@@ -41,7 +41,6 @@ class KeranjangResource extends Resource
                     ,
                 Forms\Components\TextInput::make('image')
                     ->label('Gambar Produk')
-                    ->required()
                     ,
             ]);
     }

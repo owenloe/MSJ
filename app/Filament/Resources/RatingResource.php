@@ -37,7 +37,6 @@ class RatingResource extends Resource
                     ,
                 Forms\Components\TextInput::make('gambar_produk')
                     ->label('Gambar Produk')
-                    ->required()
                     ,
             
             ]);

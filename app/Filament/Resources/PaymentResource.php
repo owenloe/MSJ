@@ -53,7 +53,6 @@ class PaymentResource extends Resource
                     ,
                 Forms\Components\TextInput::make('bukti_transfer')
                     ->label('Bukti Transfer')
-                    ->required()
                     ,
                 Forms\Components\TextInput::make('nama_bank')
                     ->label('Nama Bank')
@@ -77,7 +76,6 @@ class PaymentResource extends Resource
                     ,
                 Forms\Components\TextInput::make('gambar_komplain')
                     ->label('Gambar Komplain')
-                    ->required()
                     ,
             ]);
     }
