@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('produks', function (Blueprint $table) {
-            $table->integer('id',autoIncrement:true)->primary();
-            $table->char('kode_produk',255);
+            $table->char('kode_produk',255)->primary();
             $table->char('nama_produk',255);
             $table->char('kategori_produk',255);
             $table->char('kuantitas_produk',255);
@@ -26,6 +25,8 @@ return new class extends Migration
             $table->char('image',255);
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
+
+            $table->foreign('kategori_produk')->references('kode_kategori')->on('kategoris');
         });
     }
 

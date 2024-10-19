@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('stocks', function (Blueprint $table) {
-            $table->integer('id',autoIncrement:true)->primary();
-            $table->char('id_produk',255);
+            $table->char('id_produk',255)->primary();
             $table->char('alasan',255);
             $table->char('jumlah',255);
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
+
+            $table->foreign('id_produk')->references('kode_produk')->on('produks');
         });
     }
 

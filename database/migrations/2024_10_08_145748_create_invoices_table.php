@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->integer('id',autoIncrement:true)->primary();
-            $table->char('id_invoice',255);
+            $table->char('id_invoice',255)->primary();
+            $table->char('id_pembayaran',255);
             $table->char('invoice_produk',255);
             $table->char('nama_user',255);
             $table->timestamp('created_at')->nullable();
@@ -27,6 +27,8 @@ return new class extends Migration
             $table->char('kota',255);
             $table->char('kecamatan',255);
             $table->char('nomor_telepon',255);
+
+            $table->foreign('id_pembayaran')->references('id')->on('payments');
         });
     }
 

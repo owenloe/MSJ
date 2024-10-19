@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->integer('id',autoIncrement:true)->primary();
+            $table->char('id')->primary();
+            
             $table->char('nama_user',255);
             $table->char('nama_rek',255);
             $table->char('nomor_rek',255);
