@@ -33,40 +33,38 @@ class InvoiceResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('id_invoice')
                     ->label('ID Invoice')
+                    ->placeholder('TRX000')
+                    ->required()
                     ,
-                Forms\Components\TextInput::make('invoice_produk')
-                    ->label('Invoice Produk')
+                Forms\Components\TextInput::make('id_pembayaran')
+                    ->label('ID Pembayaran')
+                    ->placeholder('PB000')
+                    ->required()
+                    ,
+                Forms\Components\TextInput::make('userid')
+                    ->label('User ID')
+                    ->placeholder('US000')
                     ->required()
                     ,
                 Forms\Components\TextInput::make('nama_user')
                     ->label('Nama User')
                     ->required()
                     ,
-                Forms\Components\DateTimePicker::make('created_at')
-                    ->label('Created Time')
-                    ->required()
-                    ,
-                Forms\Components\DateTimePicker::make('updated_at')
-                    ->label('Updated Time')
+                Forms\Components\TextInput::make('id_produk')
+                    ->label('ID Produk')
+                    ->placeholder('PD000')
                     ->required()
                     ,
                 Forms\Components\TextInput::make('nama_produk')
                     ->label('Nama Produk')
                     ->required()
                     ,
-                Forms\Components\TextInput::make('unit_produk')
-                    ->label('Unit Produk')
+                Forms\Components\TextInput::make('quantity_produk')
+                    ->label('Quantity Produk')
                     ->required()
                     ,
                 Forms\Components\TextInput::make('harga_produk')
                     ->label('Harga Produk')
-                    ->required()
-                    ,
-                Forms\Components\TextInput::make('gambar_produk')
-                    ->label('Gambar Produk')
-                    ,
-                Forms\Components\TextInput::make('nama_bank')
-                    ->label('Nama Bank')
                     ->required()
                     ,
                 Forms\Components\TextInput::make('jalan')
@@ -96,40 +94,32 @@ class InvoiceResource extends Resource
                     ->label('ID Invoice')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('invoice_produk')
-                    ->label('Invoice Produk')
+                Tables\Columns\TextColumn::make('id_pembayaran')
+                    ->label('ID Pembayaran')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('userid')
+                    ->label('User ID')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nama_user')
                     ->label('Nama User')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('Created Time')
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Updated Time')
+                Tables\Columns\TextColumn::make('id_produk')
+                    ->label('ID Produk')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nama_produk')
                     ->label('Nama Produk')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('unit_produk')
-                    ->label('Unit Produk')
+                Tables\Columns\TextColumn::make('quantity_produk')
+                    ->label('Quantity Produk')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('harga_produk')
                     ->label('Harga Produk')
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('gambar_produk')
-                    ->label('Gambar Produk')
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('nama_bank')
-                    ->label('Nama Bank')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('jalan')

@@ -31,6 +31,16 @@ class KeranjangResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('id_keranjang')
+                    ->label('ID Keranjang')
+                    ->placeholder('KR000')
+                    ->required()
+                    ,
+                Forms\Components\TextInput::make('userid')
+                    ->label('User ID')
+                    ->placeholder('US000')
+                    ->required()
+                    ,
                 Forms\Components\TextInput::make('nama_user')
                     ->label('Nama User')
                     ->required()
@@ -63,6 +73,14 @@ class KeranjangResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id_keranjang')
+                    ->label('ID Keranjang')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('userid')
+                    ->label('User ID')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('nama_user')
                     ->label('Nama User')
                     ->sortable()
@@ -79,13 +97,13 @@ class KeranjangResource extends Resource
                     ->label('Unit Produk')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('image')
-    ->label('Gambar Produk')
-    ->formatStateUsing(function (string $state) {
-        return basename($state); // Extract the filename from the path
-    })
-    ->sortable()
-    ->searchable(),
+                    Tables\Columns\TextColumn::make('image')
+        ->label('Gambar Produk')
+        ->formatStateUsing(function (string $state) {
+            return basename($state); // Extract the filename from the path
+        })
+        ->sortable()
+        ->searchable(),
             ])
             ->filters([
                 //

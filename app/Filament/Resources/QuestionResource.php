@@ -31,8 +31,18 @@ class QuestionResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('id_tanya')
+                    ->label('ID Pertanyaaan')
+                    ->placeholder('TNY000')
+                    ->required()
+                    ,
                 Forms\Components\TextInput::make('id_produk')
                     ->label('ID Produk')
+                    ->placeholder('PD000')
+                    ->required()
+                    ,
+                Forms\Components\TextInput::make('kode_user')
+                    ->label('Kode User')
                     ->required()
                     ,
                 Forms\Components\TextInput::make('nama_user')
@@ -41,14 +51,6 @@ class QuestionResource extends Resource
                     ,
                 Forms\Components\TextInput::make('pertanyaan')
                     ->label('Pertanyaan')
-                    ->required()
-                    ,
-                Forms\Components\DateTimePicker::make('created_at')
-                    ->label('Created Time')
-                    ->required()
-                    ,
-                Forms\Components\DateTimePicker::make('updated_at')
-                    ->label('Updated Time')
                     ->required()
                     ,
             ]);
@@ -68,14 +70,6 @@ class QuestionResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('pertanyaan')
                     ->label('Pertanyaan')
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('Created Time')
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Updated Time')
                     ->sortable()
                     ->searchable(),
             ])

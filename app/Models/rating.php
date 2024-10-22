@@ -9,9 +9,15 @@ class rating extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nama_user',
-        'rating',
-        'komentar',
-        'gambar_produk',
+            'id_rating',
+            'userid',
+            'nama_user',
+            'rating',
+            'komentar',
+            'gambar_produk',
     ];
+    protected $primaryKey = 'id_rating';
+    public $incrementing = false;
+        public $timestamps = false;
+
 }

@@ -10,10 +10,12 @@ class question extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
-        'id_produk',
-        'nama_user',
-        'pertanyaan',
-        'created_at',
-        'updated_at',
+            'id_tanya',
+            'id_produk',
+            'userid',
+            'nama_user',
+            'pertanyaan',
     ];
+    protected $primaryKey = 'id_tanya';
+    public $incrementing = false;
 }

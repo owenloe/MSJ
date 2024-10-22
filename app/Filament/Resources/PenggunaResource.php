@@ -31,6 +31,11 @@ class PenggunaResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('userid')
+                    ->label('ID Pengguna')
+                    ->placeholder('US000')
+                    ->required()
+                    ,
                 Forms\Components\TextInput::make('nama')
                     ->label('Nama Pengguna')
                     ->required()
@@ -59,20 +64,6 @@ class PenggunaResource extends Resource
                     ->label('Nomor Telepon')
                     ->required()
                     ,
-                Forms\Components\TextInput::make('remember_token')
-                    ,
-                Forms\Components\DateTimePicker::make('email_verified_at')
-                    ->label('Email Verified Time')
-                    ->required()
-                    ,
-                Forms\Components\DateTimePicker::make('created_at')
-                    ->label('Created Time')
-                    ->required()
-                    ,
-                Forms\Components\DateTimePicker::make('updated_at')
-                    ->label('Updated Time')
-                    ->required()
-                    ,
                 Forms\Components\Checkbox::make('is_admin')
                     ->label('An Admin')
                     ,
@@ -83,6 +74,10 @@ class PenggunaResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('userid')
+                    ->label('ID Pengguna')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('nama')
                     ->label('Nama Pengguna')
                     ->searchable()
@@ -109,22 +104,6 @@ class PenggunaResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('nomor_telepon')
                     ->label('Nomor Telepon Pengguna')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('remember_token')
-                    ->label('Remember Token')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->label('Email Verified Time')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('Created Time')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Updated Time')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('is_admin')

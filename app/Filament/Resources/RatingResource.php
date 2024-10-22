@@ -31,6 +31,16 @@ class RatingResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('id_rating')
+                    ->label('ID Rating')
+                    ->placeholder('RT000')
+                    ->required()
+                    ,
+                Forms\Components\TextInput::make('userid')
+                    ->label('ID Pengguna')
+                    ->placeholder('US000')
+                    ->required()
+                    ,
                 Forms\Components\TextInput::make('nama_user')
                     ->label('Nama User')
                     ->required()
@@ -58,6 +68,14 @@ class RatingResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id_rating')
+                    ->label('ID Rating')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('userid')
+                    ->label('ID Pengguna')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('nama_user')
                     ->label('Nama User')
                     ->sortable()

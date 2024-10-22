@@ -12,22 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->char('id')->primary();
-            
-            $table->char('nama_user',255);
+            $table->char('id_pembayaran')->primary();
             $table->char('nama_rek',255);
             $table->char('nomor_rek',255);
-            $table->char('nominal_transfer',255);
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
-            $table->char('invoice_produk',255);
-            $table->char('bukti_transfer',255);
-            $table->char('nama_bank',255);
-            $table->char('status_transaksi',255);
-            $table->char('status_pesanan',255);
-            $table->char('status_pengiriman',255);
-            $table->char('alasan_komplain',255);
-            $table->char('gambar_komplain',255);
+            $table->timestamps();
         });
     }
 

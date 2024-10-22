@@ -31,8 +31,9 @@ class KategoriResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('kode_kategori')
-                    ->label('Kode Kategori')
+                Forms\Components\TextInput::make('id_kategori')
+                    ->label('ID Kategori')
+                    ->placeholder('KT000')
                     ->required()
                     ,
                 Forms\Components\TextInput::make('jenis_kategori')
@@ -46,12 +47,12 @@ class KategoriResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('kode_kategori')
-                    ->label('Kode Kategori')
+                Tables\Columns\TextColumn::make('id_kategori')
+                    ->label('ID Kategori')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('jenis_kategori')
-                    ->label('jenis Kategori')
+                    ->label('Jenis Kategori')
                     ->sortable()
                     ->searchable(),
             ])

@@ -31,8 +31,9 @@ class ProdukResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('kode_produk')
-                    ->label('Kode Produk')
+                Forms\Components\TextInput::make('id_produk')
+                    ->label('ID Produk')
+                    ->placeholder('PD000')
                     ->required()
                     ,
                 Forms\Components\TextInput::make('nama_produk')
@@ -41,14 +42,11 @@ class ProdukResource extends Resource
                     ,
                 Forms\Components\TextInput::make('kategori_produk')
                     ->label('Kategori Produk')
+                    ->placeholder('KT000')
                     ->required()
                     ,
-                Forms\Components\TextInput::make('kuantitas_produk')
-                    ->label('Kuantitas Produk')
-                    ->required()
-                    ,
-                Forms\Components\TextInput::make('unit_produk')
-                    ->label('Unit Produk')
+                Forms\Components\TextInput::make('quantity_produk')
+                    ->label('Quantity Produk')
                     ->required()
                     ,
                 Forms\Components\TextInput::make('harga_produk')
@@ -71,17 +69,13 @@ class ProdukResource extends Resource
                     ->label('Warna')
                     ->required()
                     ,
-                Forms\Components\TextInput::make('image')
-                    ->label('Image')
-                    ,
-                Forms\Components\DateTimePicker::make('created_at')
-                    ->label('Created Time')
-                    ->required()
-                    ,
-                Forms\Components\DateTimePicker::make('updated_at')
-                    ->label('Updated Time')
-                    ->required()
-                    ,
+                Forms\Components\FileUpload::make('image') 
+    ->label('Gambar Produk')
+    ->image() // Optimizes for image uploads
+    ->required() // Make the upload required
+    ->disk('public') // Choose the storage disk (e.g., 'public', 's3')
+    ->directory('product-images') // Specify the directory to store the images
+    ->visibility('public') // Set the visibility of the uploaded files
             ]);
     }
 
@@ -89,8 +83,8 @@ class ProdukResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('kode_produk')
-                    ->label('Kode Produk')
+                Tables\Columns\TextColumn::make('id_produk')
+                    ->label('ID Produk')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('nama_produk')
@@ -101,12 +95,8 @@ class ProdukResource extends Resource
                     ->label('Kategori Produk')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('kuantitas_produk')
-                    ->label('Kuantitas Produk')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('unit_produk')
-                    ->label('Unit Produk')
+                Tables\Columns\TextColumn::make('quantity_produk')
+                    ->label('Quantity Produk')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('harga_produk')
@@ -129,18 +119,13 @@ class ProdukResource extends Resource
                     ->label('Warna')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('image')
-                    ->label('Image')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('Created Time')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Updated Time')
-                    ->searchable()
-                    ->sortable(),
+                    Tables\Columns\TextColumn::make('image')
+        ->label('Gambar Produk')
+        ->formatStateUsing(function (string $state) {
+            return basename($state); // Extract the filename from the path
+        })
+        ->sortable()
+        ->searchable(),
             ])
             ->filters([
                 //

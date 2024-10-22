@@ -10,11 +10,16 @@ class keranjang extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
-        'nama_user',
-        'nama_produk',
-        'harga_produk',
-        'unit_produk',
-        'image',
+
+            'id_keranjang',
+            'userid',
+            'nama_user',
+            'nama_produk',
+            'harga_produk',
+            'unit_produk',
+            'image',
         
     ];
+    protected $primaryKey = 'id_keranjang';
+    public $incrementing = false;
 }

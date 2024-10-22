@@ -10,10 +10,12 @@ class notification extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
-        'notifikasi',
-        'objek',
-        'nama_user',
-        'created_at',
-        'updated_at',
+            'id_notif',
+            'userid',
+            'notifikasi',
+            'objek',
+            'nama_user',
     ];
+    protected $primaryKey = 'id_notif';
+    public $incrementing = false;
 }

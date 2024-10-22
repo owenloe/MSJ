@@ -31,6 +31,16 @@ class NotificationResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('id_notif')
+                    ->label('ID Notifikasi')
+                    ->placeholder('NT000')
+                    ->required()
+                    ,
+                Forms\Components\TextInput::make('userid')
+                    ->label('User ID')
+                    ->placeholder('US000')
+                    ->required()
+                    ,
                 Forms\Components\TextInput::make('notifikasi')
                     ->label('Notifikasi')
                     ->required()
@@ -43,14 +53,6 @@ class NotificationResource extends Resource
                     ->label('Nama User')
                     ->required()
                     ,
-                Forms\Components\DateTimePicker::make('created_at')
-                    ->label('Created Time')
-                    ->required()
-                    ,
-                Forms\Components\DateTimePicker::make('updated_at')
-                    ->label('Updated Time')
-                    ->required()
-                    ,
             ]);
     }
 
@@ -58,6 +60,14 @@ class NotificationResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id_notif')
+                    ->label('ID Notifikasi')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('userid')
+                    ->label('User ID')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('notifikasi')
                     ->label('Notifikasi')
                     ->sortable()
@@ -68,14 +78,6 @@ class NotificationResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nama_user')
                     ->label('Nama User')
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('Created Time')
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Updated Time')
                     ->sortable()
                     ->searchable(),
             ])

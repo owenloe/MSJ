@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ratings', function (Blueprint $table) {
-            $table->char('id')->primary();
-            $table->char('kode_user',255);
+            $table->char('id_rating')->primary();
+            $table->char('userid',255);
             $table->char('nama_user',255);
             $table->char('rating',255);
             $table->char('komentar',255);
             $table->char('gambar_produk',255);
             $table->timestamps();
 
-            $table->foreign('kode_user')->references('id')->on('penggunas');
+            $table->foreign('userid')->references('userid')->on('penggunas');
         });
     }
 

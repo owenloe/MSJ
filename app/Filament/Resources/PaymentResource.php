@@ -31,8 +31,9 @@ class PaymentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama_user')
-                    ->label('Nama User')
+                Forms\Components\TextInput::make('id_pembayaran')
+                    ->label('ID Pembayaran')
+                    ->placeholder('PB000')
                     ->required()
                     ,
                 Forms\Components\TextInput::make('nama_rek')
@@ -43,53 +44,6 @@ class PaymentResource extends Resource
                     ->label('Nomor Rekening')
                     ->required()
                     ,
-                Forms\Components\TextInput::make('nominal_transfer')
-                    ->label('Nominal Transfer')
-                    ->required()
-                    ,
-                Forms\Components\DateTimePicker::make('created_at')
-                    ->label('Created Time')
-                    ->required()
-                    ,
-                Forms\Components\DateTimePicker::make('updated_at')
-                    ->label('Updated Time')
-                    ->required()
-                    ,
-                Forms\Components\TextInput::make('invoice_produk')
-                    ->label('Invoice Produk')
-                    ->required()
-                    ,
-                Forms\Components\TextInput::make('bukti_transfer')
-                    ->label('Bukti Transfer')
-                    ,
-                Forms\Components\TextInput::make('nama_bank')
-                    ->label('Nama Bank')
-                    ->required()
-                    ,
-                Forms\Components\TextInput::make('status_transaksi')
-                    ->label('Status Transaksi')
-                    ->required()
-                    ,
-                Forms\Components\TextInput::make('status_pesanan')
-                    ->label('Status Pesanan')
-                    ->required()
-                    ,
-                Forms\Components\TextInput::make('status_pengiriman')
-                    ->label('Status Pengiriman')
-                    ->required()
-                    ,
-                Forms\Components\TextInput::make('alasan_komplain')
-                    ->label('Alasan Komplain')
-                    ->required()
-                    ,
-                Forms\Components\FileUpload::make('gambar_komplain') 
-    ->label('Gambar Komplain')
-    ->image() // Optimizes for image uploads
-    ->required() // Make the upload required
-    ->disk('public') // Choose the storage disk (e.g., 'public', 's3')
-    ->directory('product-images') // Specify the directory to store the images
-    ->visibility('public') // Set the visibility of the uploaded files
-
     ]);
     }
 
@@ -97,6 +51,10 @@ class PaymentResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id_pembayaran')
+                    ->label('ID Pembayaran')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('nama_user')
                     ->label('Nama User')
                     ->searchable()
@@ -105,53 +63,6 @@ class PaymentResource extends Resource
                     ->label('Nomor Rekening')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('nominal_transfer')
-                    ->label('Nominal Transfer')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('Created Time')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Updated Time')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('invoice_produk')
-                    ->label('Invoice Produk')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('bukti_transfer')
-                    ->label('Bukti Transfer')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('nama_bank')
-                    ->label('Nama Bank')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('status_transaksi')
-                    ->label('Status Transaksi')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('status_pesanan')
-                    ->label('Status Pesanan')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('status_pengiriman')
-                    ->label('Status Pengiriman')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('alasan_komplain')
-                    ->label('Alasan Komplain')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('gambar_komplain')
-    ->label('Gambar Komplain')
-    ->formatStateUsing(function (string $state) {
-        return basename($state); // Extract the filename from the path
-    })
-    ->sortable()
-    ->searchable(),
             ])
             ->filters([
                 //

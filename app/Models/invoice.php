@@ -10,20 +10,22 @@ class invoice extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
+        
         'id_invoice',
-        'invoice_produk',
+        'id_pembayaran',
+        'userid',
         'nama_user',
-        'created_at',
-        'updated_at',
+        'id_produk',
         'nama_produk',
-        'unit_produk',
+        'quantity_produk',
         'harga_produk',
-        'gambar_produk',
-        'nama_bank',
         'jalan',
         'kota',
         'kecamatan',
-        'nomor_telepon',
+        'nomor_telepon'
         
     ];
+
+    protected $primaryKey = 'id_invoice';
+    public $incrementing = false;
 }
