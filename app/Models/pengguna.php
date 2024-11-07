@@ -20,7 +20,7 @@ class pengguna extends Model
             'nomor_telepon',
             'is_admin'
     ];
-        protected $primaryKey = 'id_pembayaran';
+        protected $primaryKey = 'userid';
     public $incrementing = false;
 
 }
