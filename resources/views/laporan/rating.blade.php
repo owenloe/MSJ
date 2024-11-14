@@ -32,13 +32,13 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($data as $rating)
+            @foreach($data as $ratings)
                 <tr>
-                    <td>{{ $rating->id_rating}}</td>                    <td>{{ $question->userid}}</td>
-                    <td>{{ $rating->nama_user }}</td>
-                    <td>{{ $rating->rating}}</td>
-                    <td>{{ $rating->komentar}}</td>
-                    <td>{{ $rating->gambar_produk}}</td>
+                    <td>{{ $ratings->id_rating}}</td>                    <td>{{ $question->userid}}</td>
+                    <td>{{ $ratings->nama_user }}</td>
+                    <td>{{ $ratings->rating}}</td>
+                    <td>{{ $ratings->komentar}}</td>
+                    <td>{{ $ratings->gambar_produk}}</td>
                     
                 </tr>
             @endforeach

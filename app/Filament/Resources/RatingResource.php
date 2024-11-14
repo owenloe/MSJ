@@ -36,17 +36,30 @@ class RatingResource extends Resource
                     ->placeholder('RT000')
                     ->required()
                     ,
-                Forms\Components\TextInput::make('userid')
-                    ->label('ID Pengguna')
-                    ->placeholder('US000')
-                    ->required()
-                    ,
+                Forms\Components\Select::make('userid')
+                ->relationship('pengguna', 'userid') // Ensure the relationship name and foreign key are correct
+                ->label('ID Pengguna')
+                ->preload()
+                ->searchable()
+                ->reactive()
+                ->required()
+                ->afterStateUpdated(fn (callable $set, $state) => $set('nama_user', \App\Models\Pengguna::find($state)?->nama))
+                ,
                 Forms\Components\TextInput::make('nama_user')
                     ->label('Nama User')
                     ->required()
-                    ,
-                Forms\Components\TextInput::make('rating')
+                    ->disabled()
+                    , // Disable manual input
+                Forms\Components\Select::make('rating')
                     ->label('Rating')
+                    ->options([
+                        0 => '0',
+                        1 => '1',
+                        2 => '2',
+                        3 => '3',
+                        4 => '4',
+                        5 => '5',
+                    ])
                     ->required()
                     ,
                 Forms\Components\TextInput::make('komentar')
@@ -56,7 +69,6 @@ class RatingResource extends Resource
                 Forms\Components\FileUpload::make('gambar_produk') 
     ->label('Gambar Produk')
     ->image() // Optimizes for image uploads
-    ->required() // Make the upload required
     ->disk('public') // Choose the storage disk (e.g., 'public', 's3')
     ->directory('product-images') // Specify the directory to store the images
     ->visibility('public') // Set the visibility of the uploaded files

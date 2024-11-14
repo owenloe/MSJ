@@ -6,6 +6,7 @@ use App\Filament\Resources\ProdukResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Barryvdh\DomPDF\Facade\PDF;
+use Illuminate\Support\Facades\DB;
 
 class ListProduks extends ListRecords
 {
@@ -22,8 +23,12 @@ class ListProduks extends ListRecords
  ->requiresConfirmation()
  ->modalHeading('Cetak Laporan Produk')
  ->modalSubheading('Apakah Anda yakin ingin mencetak laporan?'),
+
  ];
+
+ 
     }
+    
 
     public static function cetakLaporan()
  {
@@ -34,5 +39,5 @@ class ListProduks extends ListRecords
  // Unduh file PDF
  return response()->streamDownload(fn() => print($pdf->output()), 'laporanproduk.pdf');
  }
-
 }
+ 
