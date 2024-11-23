@@ -3,19 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Pengguna</title>
+    <title>Laporan Invoice</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            font-size: 10px; /* Reduce font size */
         }
         table {
             width: 100%;
             border-collapse: collapse;
         }
         th, td {
-            padding: 8px;
+            padding: 4px; /* Reduce padding */
             text-align: left;
             border: 1px solid #ddd;
+            word-wrap: break-word; /* Ensure long words break to fit in the cell */
+        }
+        th {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
@@ -27,7 +32,7 @@
                 <th>ID Invoice</th>
                 <th>ID Pembayaran</th>
                 <th>User ID</th>
-                <th>Nama</th>
+                <th>Nama User</th>
                 <th>ID Produk</th>
                 <th>Nama Produk</th>
                 <th>Quantity Produk</th>
@@ -36,6 +41,7 @@
                 <th>Kota</th>
                 <th>Kecamatan</th>
                 <th>Nomor Telepon</th>
+                <th>Date Made</th>
             </tr>
         </thead>
         <tbody>
@@ -53,6 +59,7 @@
                     <td>{{ $invoice->kota }}</td>
                     <td>{{ $invoice->kecamatan }}</td>
                     <td>{{ $invoice->nomor_telepon }}</td>
+                    <td>{{ $invoice->date_made }}</td>
                 </tr>
             @endforeach
         </tbody>

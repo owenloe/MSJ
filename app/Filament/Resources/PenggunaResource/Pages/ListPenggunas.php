@@ -28,11 +28,11 @@ class ListPenggunas extends ListRecords
     public static function cetakLaporan()
  {
  // Ambil data pengguna
- $data = \App\Models\pengguna::all();
- // Load view untuk cetak PDF
- $pdf = PDF::loadView('laporan.pengguna', ['data' => $data]);
- // Unduh file PDF
- return response()->streamDownload(fn() => print($pdf->output()), 'laporanpengguna.pdf');
- }
+ $data = \App\Models\Pengguna::all(); // Fetch all users
+    // Load view untuk cetak PDF
+    $pdf = PDF::loadView('laporan.pengguna', ['data' => $data]);
+    // Unduh file PDF
+    return response()->streamDownload(fn() => print($pdf->output()), 'laporanpengguna.pdf');
+}
 
 }

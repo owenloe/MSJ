@@ -7,15 +7,20 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            font-size: 10px; /* Reduce font size */
         }
         table {
             width: 100%;
             border-collapse: collapse;
         }
         th, td {
-            padding: 8px;
+            padding: 4px; /* Reduce padding */
             text-align: left;
             border: 1px solid #ddd;
+            word-wrap: break-word; /* Ensure long words break to fit in the cell */
+        }
+        th {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
@@ -24,31 +29,29 @@
     <table>
         <thead>
             <tr>
-                <th>id_produk</th>
-                <th>nama_produk</th>
-                <th>kategori_produk</th>
-                <th>quantity_produk</th>
-                <th>harga_produk</th>
-                <th>berat</th>
-                <th>jenis</th>
-                <th>ukuran</th>
-                <th>warna</th>
-                <th>image</th>
+                <th>User ID</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Jalan</th>
+                <th>Kota</th>
+                <th>Kecamatan</th>
+                <th>Nomor Telepon</th>
+                <th>Is Admin</th>
             </tr>
         </thead>
         <tbody>
             @foreach($data as $pengguna)
                 <tr>
-        <th>userid</th>
-  <th>nama</th>
-  <th>email</th>
-  <th>password</th>
-  <th>jalan</th>
-  <th>kota</th>
-  <th>kecamatan</th>
-  <th>nomor_telepon</th>
-  <th>is_admin</th>
-                    
+                    <td>{{ $pengguna->userid }}</td>
+                    <td>{{ $pengguna->nama }}</td>
+                    <td>{{ $pengguna->email }}</td>
+                    <td>{{ $pengguna->password }}</td>
+                    <td>{{ $pengguna->jalan }}</td>
+                    <td>{{ $pengguna->kota }}</td>
+                    <td>{{ $pengguna->kecamatan }}</td>
+                    <td>{{ $pengguna->nomor_telepon }}</td>
+                    <td>{{ $pengguna->is_admin ? 'Yes' : 'No' }}</td>
                 </tr>
             @endforeach
         </tbody>

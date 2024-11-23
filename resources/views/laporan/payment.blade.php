@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Pengguna</title>
+    <title>Laporan Payment</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,6 +17,9 @@
             text-align: left;
             border: 1px solid #ddd;
         }
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
@@ -24,8 +27,9 @@
     <table>
         <thead>
             <tr>
-                <th>ID Kategori</th>
-                <th>Jenis Kategori</th>
+                <th>ID Pembayaran</th>
+                <th>Nama Rekening</th>
+                <th>Nomor Rekening</th>
             </tr>
         </thead>
         <tbody>
@@ -34,7 +38,6 @@
                     <td>{{ $payment->id_pembayaran }}</td>
                     <td>{{ $payment->nama_rek }}</td>
                     <td>{{ $payment->nomor_rek }}</td>
-                    
                 </tr>
             @endforeach
         </tbody>

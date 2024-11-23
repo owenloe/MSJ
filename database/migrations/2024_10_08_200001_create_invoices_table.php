@@ -24,6 +24,7 @@ return new class extends Migration
             $table->char('kota',255);
             $table->char('kecamatan',255);
             $table->char('nomor_telepon',255);
+            $table->date('date_made',255);
             $table->timestamps();
 
             $table->foreign('id_pembayaran')->references('id_pembayaran')->on('payments');

@@ -25,7 +25,7 @@ class ListInvoices extends ListRecords
  ->modalSubheading('Apakah Anda yakin ingin mencetak laporan?'),
 
  Actions\Action::make('cetakReport')
- ->label('Cetak Report')
+ ->label('Cetak Laporan Penjualan Per Bulan')
  ->icon('heroicon-o-printer')
  ->action(fn() => static::cetakReport())
  ->requiresConfirmation()
@@ -48,8 +48,8 @@ class ListInvoices extends ListRecords
  $data = \App\Models\invoice::all();
  // Load view untuk cetak PDF
  $pdf = PDF::loadView('laporan.cetak', ['data' => $data]);
- // Unduh file PDF
- return response()->streamDownload(fn() => print($pdf->output()), 'laporaninvoice.pdf');
+    // Unduh file PDF
+    return response()->streamDownload(fn() => print($pdf->output()), 'laporaninvoice.pdf');
  }
 
 
@@ -69,9 +69,8 @@ $data = DB::table('kategoris as k')
     ->get();
 
     $pdf = PDF::loadView('laporan.Laporanpenjualanpbln', ['data' => $data]);
-
     // Unduh file PDF
-    return response()->streamDownload(fn() => print($pdf->output()), 'Laporan Penjualan Produk Per Bulan.pdf');
+    return response()->streamDownload(fn() => print($pdf->output()), 'laporanpenjualanpbln.pdf');
 }
 public static function cetakProductSalesByCategoryReport()
     {

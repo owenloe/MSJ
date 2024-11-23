@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\QuestionResource\Pages;
 use App\Filament\Resources\QuestionResource\RelationManagers;
 use App\Models\Question;
+use App\Imports\QuestionImport;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,6 +13,12 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Actions\Action;
+use Maatwebsite\Excel\Facades\Excel;
+use Filament\Forms\Components\FileUpload;
+use Illuminate\Support\Facades\Storage;
+use Filament\Notifications\Notification;
+
 
 class QuestionResource extends Resource
 {
@@ -78,6 +85,32 @@ class QuestionResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+            ])
+            ->headerActions([
+                Action::make('importExcel')
+                    ->label('Import Excel')
+                    ->action(function (array $data) {
+                        // Ensure $data['file'] is a valid path in storage
+                        $filePath = storage_path('app/public/' . $data['file']);
+                        // Import file using absolute path
+                        Excel::import(new QuestionImport, $filePath);
+                        // Show success notification
+                        Notification::make()
+                            ->title('Data berhasil diimpor!')
+                            ->success()
+                            ->send();
+                    })
+                    ->form([
+                        FileUpload::make('file')
+                            ->label('Pilih File Excel')
+                            ->disk('public') // Ensure it's stored on the 'public' disk
+                            ->directory('imports')
+                            ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'])
+                            ->required(),
+                    ])
+                    ->modalHeading('Import Data Pertanyaan')
+                    ->modalButton('Import')
+                    ->color('success'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

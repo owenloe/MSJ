@@ -31,6 +31,15 @@
         tr:hover {
             background-color: #f5f5f5;
         }
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -59,5 +68,8 @@
             </tbody>
         </table>
     </div>
+    <div class="footer">
+    <p>Dicetak pada: {{ date('Y-m-d H:i:s') }}</p>
+</div>
 </body>
 </html>

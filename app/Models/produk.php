@@ -24,4 +24,20 @@ class produk extends Model
     ];
 protected $primaryKey = 'id_produk';
     public $incrementing = false;
+
+     protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            if (empty($model->image)) {
+                $model->image = 'nopic.jpg';
+            }
+        });
+    }
+    public function kategori()
+{
+    return $this->belongsTo(kategori::class, 'kategori_produk', 'id_kategori');
+}
+
 }

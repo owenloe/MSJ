@@ -17,6 +17,11 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Filament\Widgets\TotalPenjualan;
+use App\Filament\Widgets\GeoData;
+use App\Filament\Widgets\PenjualanPerBarang;
+use App\Filament\Widgets\stokLevel3;
+
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -37,8 +42,10 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                PenjualanPerBarang::class,
+                stokLevel3::class,
+                GeoData::class,
+
             ])
             ->middleware([
                 EncryptCookies::class,

@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Carbon\Carbon;
-use App\Models\Invoice;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Invoice;
+use Carbon\Carbon;
 
 class InvoiceSeeder extends Seeder
 {
@@ -14,58 +13,99 @@ class InvoiceSeeder extends Seeder
      */
     public function run(): void
     {
+        // First invoice
         Invoice::create([
-            'id_invoice' => 'INV001',
+            'id_invoice' => 'TRX001',
             'id_pembayaran' => 'PB001',
-            'invoice_produk' => 'INV0001',
-            'nama_user' => 'US001',
+            'userid' => 'US001',
+            'nama_user' => 'John Doe',
+            'id_produk' => 'PD001',
+            'nama_produk' => 'Bright Gas 3KG',
+            'quantity_produk' => 1,
+            'harga_produk' => 500000,
+            'jalan' => 'Jl. Merdeka No. 1',
+            'kota' => 'Jakarta',
+            'kecamatan' => 'Gambir',
+            'nomor_telepon' => '081234567890',
+            'date_made' => '2021-11-22',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'nama_produk' => 'Produk 1',
-            'unit_produk' => 1,
-            'harga_produk' => 100000,
-            'gambar_produk' => 'path/to/product/image.jpg', // Replace with actual path
-            'nama_bank' => 'Nama Bank', // Replace with actual bank name
-            'jalan' => 'Nama Jalan', // Replace with actual street address
-            'kota' => 'Nama Kota', // Replace with actual city
-            'kecamatan' => 'Nama Kecamatan', // Replace with actual district
-            'nomor_telepon' => '081234567890', // Replace with actual phone number
         ]);
 
+        // Second invoice
         Invoice::create([
-    'id_invoice' => 'INV002',
-    'id_pembayaran' => 'PB002',
-    'invoice_produk' => 'INV0002',
-    'nama_user' => 'US002',
-    'created_at' => Carbon::now(),
-    'updated_at' => Carbon::now(),
-    'nama_produk' => 'Produk 2',
-    'unit_produk' => 3,
-    'harga_produk' => 50000,
-    'gambar_produk' => 'path/to/product/image2.jpg', 
-    'nama_bank' => 'Bank B', 
-    'jalan' => 'Jalan Melati',
-    'kota' => 'Bandung', 
-    'kecamatan' => 'Bandung Wetan', 
-    'nomor_telepon' => '085712345678', 
-]);
+            'id_invoice' => 'TRX002',
+            'id_pembayaran' => 'PB002',
+            'userid' => 'US002',
+            'nama_user' => 'Jane Smith',
+            'id_produk' => 'PD002',
+            'nama_produk' => 'Bright Gas 12KG',
+            'quantity_produk' => 2,
+            'harga_produk' => 150000,
+            'jalan' => 'Jl. Sudirman No. 2',
+            'kota' => 'Bandung',
+            'kecamatan' => 'Cicendo',
+            'nomor_telepon' => '081234567891',
+            'date_made' => '2021-11-23',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
 
-Invoice::create([
-    'id_invoice' => 'INV003',
-    'id_pembayaran' => 'PB003',
-    'invoice_produk' => 'INV0003',
-    'nama_user' => 'US003',
-    'created_at' => Carbon::now(),
-    'updated_at' => Carbon::now(),
-    'nama_produk' => 'Produk 3',
-    'unit_produk' => 2,
-    'harga_produk' => 250000,
-    'gambar_produk' => 'path/to/product/image3.jpg', 
-    'nama_bank' => 'Bank C', 
-    'jalan' => 'Jalan Anggrek', 
-    'kota' => 'Surabaya', 
-    'kecamatan' => 'Gubeng', 
-    'nomor_telepon' => '089876543210', 
-]);
+        // Third invoice
+        Invoice::create([
+            'id_invoice' => 'TRX003',
+            'id_pembayaran' => 'PB003',
+            'userid' => 'US003',
+            'nama_user' => 'Alice Johnson',
+            'id_produk' => 'PD003',
+            'nama_produk' => 'Elpiji 3KG',
+            'quantity_produk' => 6,
+            'harga_produk' => 90000,
+            'jalan' => 'Jl. Thamrin No. 3',
+            'kota' => 'Surabaya',
+            'kecamatan' => 'Tegalsari',
+            'nomor_telepon' => '081234567892',
+            'date_made' => '2021-11-24',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        // Fourth invoice
+        Invoice::create([
+            'id_invoice' => 'TRX004',
+            'id_pembayaran' => 'PB004',
+            'userid' => 'US004',
+            'nama_user' => 'Bob Brown',
+            'id_produk' => 'PD004',
+            'nama_produk' => 'Elpiji 5.5KG',
+            'quantity_produk' => 1,
+            'harga_produk' => 175000,
+            'jalan' => 'Jl. Gatot Subroto No. 4',
+            'kota' => 'Medan',
+            'kecamatan' => 'Medan Baru',
+            'nomor_telepon' => '081234567893',
+            'date_made' => '2021-11-25',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        // Fifth invoice
+        Invoice::create([
+            'id_invoice' => 'TRX005',
+            'id_pembayaran' => 'PB005',
+            'userid' => 'US005',
+            'nama_user' => 'Charlie Davis',
+            'id_produk' => 'PD005',
+            'nama_produk' => 'Elpiji 12KG',
+            'quantity_produk' => 1,
+            'harga_produk' => 600000,
+            'jalan' => 'Jl. Diponegoro No. 5',
+            'kota' => 'Yogyakarta',
+            'kecamatan' => 'Jetis',
+            'nomor_telepon' => '081234567894',
+            'date_made' => '2021-11-26',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
     }
 }
