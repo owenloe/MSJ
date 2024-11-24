@@ -23,7 +23,7 @@ class NotificationImport implements ToModel, WithHeadingRow
             'userid' => $row['userid'],
             'notifikasi' => $row['notifikasi'],
             'objek' => $row['objek'],
-            'nama_user' => $pengguna ? $pengguna->nama : null,
+            'nama_user' => $row['nama_user'],
         ]);
     }
 }

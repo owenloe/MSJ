@@ -6,7 +6,7 @@ use App\Models\Question;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class QuestionImport implements ToModel
+class QuestionImport implements ToModel, WithHeadingRow
 {
     /**
      * @param array $row
@@ -16,10 +16,11 @@ class QuestionImport implements ToModel
     public function model(array $row)
     {
         return new Question([
-            'question_text' => $row['question_text'],
-            'answer' => $row['answer'],
-            'category' => $row['category'],
-            'difficulty' => $row['difficulty'],
+            'id_tanya' => $row['id_tanya'] ?? null,
+            'id_produk' => $row['id_produk'] ?? null,
+            'userid' => $row['userid'] ?? null,
+            'nama_user' => $row['nama_user'] ?? null,
+            'pertanyaan' => $row['pertanyaan'] ?? null,
         ]);
     }
 }

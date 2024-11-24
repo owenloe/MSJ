@@ -66,7 +66,7 @@ class PenjualanPerBarang extends ChartWidget
     {
         return [
             'maintainAspectRatio' => false,
-            'aspectRatio' => 1.5, // Adjust this value to make the chart smaller or larger
+            'aspectRatio' => 1.1, // Adjust this value to make the chart smaller or larger
             'plugins' => [
                 'legend' => [
                     'display' => true,

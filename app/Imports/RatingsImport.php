@@ -6,7 +6,7 @@ use App\Models\Rating;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class RatingsImport implements ToModel
+class RatingsImport implements ToModel , WithHeadingRow
 {
     /**
      * @param array $row
@@ -16,10 +16,13 @@ class RatingsImport implements ToModel
     public function model(array $row)
     {
         return new Rating([
+            'id_rating' => $row['id_rating'],
             'userid' => $row['userid'],
             'nama_user' => \App\Models\Pengguna::find($row['userid'])?->nama,
             'rating' => $row['rating'],
-            'comment' => $row['comment'],
+            'komentar' => $row['komentar'],
+            'gambar_produk' => $row['gambar_produk'],
+
         ]);
     }
 }

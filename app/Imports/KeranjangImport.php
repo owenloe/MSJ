@@ -23,9 +23,9 @@ class KeranjangImport implements ToModel, WithHeadingRow
         return new Keranjang([
             'id_keranjang' => $row['id_keranjang'],
             'userid' => $row['userid'],
-            'nama_user' => $pengguna ? $pengguna->nama : null,
+            'nama_user' => $row['nama_user'],
             'nama_produk' => $row['nama_produk'],
-            'harga_produk' => $produk ? $produk->harga_produk : $row['harga_produk'],
+            'harga_produk' => $row['harga_produk'],
             'unit_produk' => $row['unit_produk'],
             'image' => $row['image'],
         ]);

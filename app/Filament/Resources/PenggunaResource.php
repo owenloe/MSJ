@@ -23,7 +23,10 @@ class PenggunaResource extends Resource
 {
     protected static ?string $model = Pengguna::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
+
+        protected static ?string $navigationGroup = 'User';
+
 
     public static function getModelLabel():string{
         return'Pengguna';

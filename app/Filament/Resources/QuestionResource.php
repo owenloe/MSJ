@@ -24,7 +24,10 @@ class QuestionResource extends Resource
 {
     protected static ?string $model = Question::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-question-mark-circle';
+
+    protected static ?string $navigationGroup = 'Produk';
+
 
     public static function getModelLabel():string{
         return'Question';
@@ -48,7 +51,7 @@ class QuestionResource extends Resource
                     ->placeholder('PD000')
                     ->required()
                     ,
-                Forms\Components\TextInput::make('kode_user')
+                Forms\Components\TextInput::make('userid')
                     ->label('Kode User')
                     ->required()
                     ,
@@ -67,6 +70,10 @@ class QuestionResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id_tanya')
+                    ->label('ID Pertanyaan')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('id_produk')
                     ->label('ID Produk')
                     ->sortable()

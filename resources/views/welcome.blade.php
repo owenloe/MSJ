@@ -41,8 +41,8 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #000;
-            color: #fff;
+            background-color: #fff; /* Change background color to white */
+            color: #000; /* Change text color to black */
             margin: 0;
             padding: 0;
             min-height: 100vh;
@@ -52,14 +52,15 @@
         }
 
         .main-container {
-            background-color: #1a1a1a;
+            background-color: #343a40; /* Change background color to dark grey */
             padding: 3rem;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Adjust shadow for lighter background */
             max-width: 800px;
             width: 90%;
             margin: 2rem;
             animation: fadeIn 1s ease-out;
+            color: #fff; /* Change text color to white */
         }
 
         .logo-container {
@@ -80,7 +81,7 @@
         }
 
         h1 {
-            color: #fff;
+            color: #fff; /* Change text color to white */
             font-size: 2.4rem;
             font-weight: 700;
             margin-bottom: 1rem;
@@ -90,7 +91,7 @@
         }
 
         .subtitle {
-            color: #ccc;
+            color: #ddd; /* Change text color to light grey */
             font-size: 1.2rem;
             margin-bottom: 2rem;
             animation: fadeInUp 1s ease-out 0.4s;
@@ -99,7 +100,7 @@
         }
 
         .business-description {
-            background-color: #333;
+            background-color: #495057; /* Change background color to slightly lighter dark grey */
             padding: 2rem;
             border-radius: 10px;
             margin-bottom: 2.5rem;
@@ -115,13 +116,13 @@
         }
 
         .business-description h2 {
-            color: #fff;
+            color: #fff; /* Change text color to white */
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
 
         .business-description p {
-            color: #ccc;
+            color: #ddd; /* Change text color to light grey */
             font-size: 1.1rem;
             line-height: 1.6;
             margin-bottom: 0;
