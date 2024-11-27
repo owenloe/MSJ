@@ -1,18 +1,22 @@
-<!-- resources/views/laporan/CustomerSatisfactionReport.blade.php -->
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Customer Satisfaction Report</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Most Purchased Products by Customer Report</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            padding-bottom: 50px; /* Height of the footer */
         }
         .container {
             margin-top: 50px;
         }
-        h2 {
+        h1 {
             text-align: center;
             margin-bottom: 30px;
         }
@@ -39,37 +43,37 @@
             background-color: #f5f5f5;
         }
         .footer {
-            position: fixed;
+            position: absolute;
             left: 0;
             bottom: 0;
             width: 100%;
             background-color: #4CAF50; /* Green background */
             color: white; /* White text */
-            padding: 10px;
             text-align: center;
+            padding: 10px 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Customer Satisfaction Report</h2>
+        <h1>Total Sales by Customer Report</h1>
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>User ID</th>
                     <th>User Name</th>
-                    <th>Total Reviews</th>
-                    <th>Average Rating</th>
+                    <th>Total Transactions</th>
+                    <th>Total Sales</th>
                     <th>Total Quantity Sold</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($data as $item)
+                @foreach ($data as $item)
                     <tr>
                         <td>{{ $item->userid }}</td>
                         <td>{{ $item->user_name }}</td>
-                        <td>{{ $item->total_reviews }}</td>
-                        <td>{{ number_format($item->average_rating, 2) }}</td>
+                        <td>{{ $item->total_transactions }}</td>
+                        <td>{{ number_format($item->total_sales, 2) }}</td>
                         <td>{{ $item->total_quantity_sold }}</td>
                     </tr>
                 @endforeach

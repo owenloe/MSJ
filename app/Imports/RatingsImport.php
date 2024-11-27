@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Rating;
+use App\Models\rating;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -15,7 +15,7 @@ class RatingsImport implements ToModel , WithHeadingRow
      */
     public function model(array $row)
     {
-        return new Rating([
+        return new rating([
             'id_rating' => $row['id_rating'],
             'userid' => $row['userid'],
             'nama_user' => \App\Models\Pengguna::find($row['userid'])?->nama,

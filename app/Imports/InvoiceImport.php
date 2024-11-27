@@ -2,14 +2,11 @@
 
 namespace App\Imports;
 
-use App\Models\Invoice;
-use App\Models\Pengguna;
-use App\Models\Produk;
-use App\Models\Payment;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use App\Models\Invoice;
 
-class InvoiceImport implements ToModel
+class InvoiceImport implements ToModel , WithHeadingRow
 {
     /**
      * @param array $row
@@ -18,23 +15,20 @@ class InvoiceImport implements ToModel
      */
     public function model(array $row)
     {
-        $pengguna = Pengguna::find($row['userid']);
-        $produk = Produk::find($row['id_produk']);
-        $payment = Payment::find($row['id_pembayaran']);
 
         return new Invoice([
             'id_invoice' => $row['id_invoice'],
             'id_pembayaran' => $row['id_pembayaran'],
             'userid' => $row['userid'],
-            'nama_user' => $pengguna ? $pengguna->nama : $row['nama_user'],
+            'nama_user' => \App\Models\Pengguna::find($row['userid'])?->nama,
             'id_produk' => $row['id_produk'],
-            'nama_produk' => $produk ? $produk->nama_produk : $row['nama_produk'],
+            'nama_produk' => \App\Models\Produk::find($row['id_produk'])?->nama_produk,
             'quantity_produk' => $row['quantity_produk'],
-            'harga_produk' => $row['harga_produk'],
-            'jalan' => $row['jalan'],
-            'kota' => $row['kota'],
-            'kecamatan' => $row['kecamatan'],
-            'nomor_telepon' => $row['nomor_telepon'],
+            'harga_produk' => \App\Models\Produk::find($row['id_produk'])?->harga_produk,
+            'jalan' => \App\Models\Pengguna::find($row['userid'])?->jalan,
+            'kota' => \App\Models\Pengguna::find($row['userid'])?->kota,
+            'kecamatan' => \App\Models\Pengguna::find($row['userid'])?->kecamatan,
+            'nomor_telepon' => \App\Models\Pengguna::find($row['userid'])?->nomor_telepon,
             'date_made' => $row['date_made'],
         ]);
     }

@@ -16,11 +16,11 @@ class QuestionImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new Question([
-            'id_tanya' => $row['id_tanya'] ?? null,
-            'id_produk' => $row['id_produk'] ?? null,
-            'userid' => $row['userid'] ?? null,
-            'nama_user' => $row['nama_user'] ?? null,
-            'pertanyaan' => $row['pertanyaan'] ?? null,
+            'id_tanya' => $row['id_tanya'],
+            'id_produk' => $row['id_produk'],
+            'userid' => $row['userid'],
+            'nama_user' => \App\Models\Pengguna::find($row['userid'])?->nama,
+            'pertanyaan' => $row['pertanyaan'],
         ]);
     }
 }

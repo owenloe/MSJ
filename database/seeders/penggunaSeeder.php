@@ -23,7 +23,7 @@ class PenggunaSeeder extends Seeder
             'kota' => 'Jakarta',
             'kecamatan' => 'Gambir',
             'nomor_telepon' => '081234567890',
-            'is_admin' => false,
+            'is_admin' => 'Yes',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -38,7 +38,7 @@ class PenggunaSeeder extends Seeder
             'kota' => 'Bandung',
             'kecamatan' => 'Cicendo',
             'nomor_telepon' => '081234567891',
-            'is_admin' => false,
+            'is_admin' => 'No',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -53,7 +53,7 @@ class PenggunaSeeder extends Seeder
             'kota' => 'Surabaya',
             'kecamatan' => 'Tegalsari',
             'nomor_telepon' => '081234567892',
-            'is_admin' => true,
+            'is_admin' => 'Yes',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -68,24 +68,10 @@ class PenggunaSeeder extends Seeder
             'kota' => 'Medan',
             'kecamatan' => 'Medan Baru',
             'nomor_telepon' => '081234567893',
-            'is_admin' => false,
+            'is_admin' => 'No',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
 
-        // Fifth user
-        Pengguna::create([
-            'userid' => 'US005',
-            'nama' => 'Charlie Davis',
-            'email' => 'charlie.davis@example.com',
-            'password' => 'password123',
-            'jalan' => 'Jl. Diponegoro No. 5',
-            'kota' => 'Yogyakarta',
-            'kecamatan' => 'Jetis',
-            'nomor_telepon' => '081234567894',
-            'is_admin' => false,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
     }
 }

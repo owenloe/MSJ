@@ -46,18 +46,28 @@ class QuestionResource extends Resource
                     ->placeholder('TNY000')
                     ->required()
                     ,
-                Forms\Components\TextInput::make('id_produk')
-                    ->label('ID Produk')
-                    ->placeholder('PD000')
-                    ->required()
-                    ,
-                Forms\Components\TextInput::make('userid')
-                    ->label('Kode User')
-                    ->required()
-                    ,
+                Forms\Components\Select::make('id_produk')
+                ->label('ID Produk')
+                ->relationship('produk', 'id_produk') // Ensure the relationship name and display column are correct
+                ->preload()
+                ->searchable()
+                ->reactive()
+                ->required(),
+                Forms\Components\Select::make('userid')
+                     ->label('User ID')
+                     ->relationship('pengguna', 'userid') // Ensure the relationship name and display column are correct
+                     ->preload()
+                     ->searchable()
+                     ->required()
+                     ->reactive()
+                     ->afterStateUpdated(function (callable $set, $state) {
+                         $pengguna = \App\Models\pengguna::find($state);
+                         $set('nama_user', $pengguna?->nama);
+                     }),
                 Forms\Components\TextInput::make('nama_user')
                     ->label('Nama User')
                     ->required()
+                    ->disabled()
                     ,
                 Forms\Components\TextInput::make('pertanyaan')
                     ->label('Pertanyaan')

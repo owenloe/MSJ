@@ -56,6 +56,7 @@ class InvoiceResource extends Resource
                     ->relationship('pengguna', 'userid') // Ensure the relationship name and display column are correct
                     ->searchable()
                     ->preload()
+                    ->reactive()
                     ->required()
                     ->afterStateUpdated(function (callable $set, $state) {
                     $pengguna = \App\Models\Pengguna::find($state);
@@ -71,15 +72,17 @@ class InvoiceResource extends Resource
                     ->disabled()
                     ,
                 Forms\Components\Select::make('id_produk')
-    ->label('ID Produk')
-    ->relationship('produk', 'id_produk') // Ensure the relationship name and display column are correct
-    ->searchable()
-    ->preload()
-    ->required()
-    ->afterStateUpdated(function (callable $set, $state) {
-        $produk = \App\Models\Produk::find($state);
-        $set('nama_produk', $produk?->nama_produk);
-    }),
+                    ->label('ID Produk')
+                    ->relationship('produk', 'id_produk') // Ensure the relationship name and display column are correct
+                    ->searchable()
+                    ->reactive()
+                    ->preload()
+                    ->required()
+                    ->afterStateUpdated(function (callable $set, $state) {
+                        $produk = \App\Models\Produk::find($state);
+                        $set('nama_produk', $produk?->nama_produk);
+                        $set('harga_produk', $produk?->harga_produk);
+                    }),
                 Forms\Components\TextInput::make('nama_produk')
                     ->label('Nama Produk')
                     ->required()
@@ -95,6 +98,7 @@ class InvoiceResource extends Resource
                 Forms\Components\TextInput::make('harga_produk')
                     ->label('Harga Produk')
                     ->required()
+                    ->disabled()
                     ,
                 Forms\Components\TextInput::make('jalan')
                     ->label('Jalan')

@@ -73,9 +73,13 @@ class PenggunaResource extends Resource
                     ->label('Nomor Telepon')
                     ->required()
                     ,
-                Forms\Components\Checkbox::make('is_admin')
+                Forms\Components\Select::make('is_admin')
+                    ->required()
                     ->label('An Admin')
-                    ,
+                    ->options([
+                        'Yes' => 'Yes',
+                        'No' => 'No',
+                    ]),
             ]);
     }
 

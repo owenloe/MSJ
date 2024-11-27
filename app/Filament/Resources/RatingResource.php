@@ -77,12 +77,12 @@ class RatingResource extends Resource
                     ->required()
                     ,
                 Forms\Components\FileUpload::make('gambar_produk') 
-    ->label('Gambar Produk')
-    ->image() // Optimizes for image uploads
-    ->disk('public') // Choose the storage disk (e.g., 'public', 's3')
-    ->directory('product-images') // Specify the directory to store the images
-    ->visibility('public') // Set the visibility of the uploaded files
-            
+                    ->label('Gambar Produk')
+                    ->required()
+                    ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/jpg'])
+                    ->visibility('public') // Make the file public
+                    ->directory('public/fotos') // Choose the storage disk (e.g., 'public', 's3')
+                    ->preserveFilenames(), // Preserve the original filenames
             ]);
     }
 
@@ -110,13 +110,11 @@ class RatingResource extends Resource
                     ->label('Komentar')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('gambar_produk')
-    ->label('Gambar Produk')
-    ->formatStateUsing(function (string $state) {
-        return basename($state); // Extract the filename from the path
-    })
-    ->sortable()
-    ->searchable(),
+                Tables\Columns\ImageColumn::make('gambar_produk')
+                    ->label('Gambar Produk')
+                    ->width('100')
+                    ->disk('public')
+                    ->url(fn ($record) => Storage::url($record->image)),
             ])
             ->filters([
                 //

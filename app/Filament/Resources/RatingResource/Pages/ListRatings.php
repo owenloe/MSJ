@@ -47,18 +47,19 @@ class ListRatings extends ListRecords
  public static function cetakCustomerSatisfactionReport()
     {
         $data = DB::table('ratings as r')
-            ->selectRaw('
-                r.userid,
-                u.nama as user_name,
-                COUNT(r.id_rating) as total_reviews,
-                AVG(r.rating) as average_rating,
-                SUM(i.quantity_produk) as total_quantity_sold
-            ')
-            ->join('penggunas as u', 'r.userid', '=', 'u.userid')
-            ->join('invoices as i', 'r.userid', '=', 'i.userid')
-            ->groupBy('r.userid', 'u.nama')
-            ->orderBy('average_rating', 'DESC')
-            ->get();
+        ->selectRaw('
+            r.userid,
+            u.nama as user_name,
+            COUNT(r.id_rating) as total_reviews,
+            AVG(r.rating) as average_rating,
+            (SELECT SUM(i.quantity_produk) 
+             FROM invoices i 
+             WHERE i.userid = r.userid) as total_quantity_sold
+        ')
+        ->join('penggunas as u', 'r.userid', '=', 'u.userid')
+        ->groupBy('r.userid', 'u.nama')
+        ->orderBy('average_rating', 'DESC')
+        ->get();
 
         $pdf = PDF::loadView('laporan.CustomerSatisfactionReport', ['data' => $data]);
 

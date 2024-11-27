@@ -59,6 +59,7 @@ class invoice extends Model
 
         $produk = \App\Models\Produk::find($model->id_produk);
         $model->nama_produk = $produk?->nama_produk;
+        $model->harga_produk = $produk?->harga_produk;
         });
 }
 }

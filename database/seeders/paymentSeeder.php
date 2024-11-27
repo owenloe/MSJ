@@ -48,14 +48,5 @@ class PaymentSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
-
-        // Fifth payment method
-        Payment::create([
-            'id_pembayaran' => 'PB005',
-            'nama_rek' => 'Charlie Davis',
-            'nomor_rek' => '5555555555',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
     }
 }

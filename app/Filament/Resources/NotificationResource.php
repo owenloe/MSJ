@@ -23,7 +23,7 @@ class NotificationResource extends Resource
 {
     protected static ?string $model = Notification::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+    protected static ?string $navigationIcon = 'heroicon-o-bell';
 
     protected static ?string $navigationGroup = 'Settings';
 
@@ -45,11 +45,17 @@ class NotificationResource extends Resource
                     ->placeholder('NT000')
                     ->required()
                     ,
-                Forms\Components\TextInput::make('userid')
-                    ->label('User ID')
-                    ->placeholder('US000')
-                    ->required()
-                    ,
+                Forms\Components\Select::make('userid')
+                     ->label('User ID')
+                     ->relationship('pengguna', 'userid') // Ensure the relationship name and display column are correct
+                     ->preload()
+                     ->searchable()
+                     ->required()
+                     ->reactive()
+                     ->afterStateUpdated(function (callable $set, $state) {
+                         $pengguna = \App\Models\pengguna::find($state);
+                         $set('nama_user', $pengguna?->nama);
+                     }),
                 Forms\Components\TextInput::make('notifikasi')
                     ->label('Notifikasi')
                     ->required()
@@ -61,6 +67,7 @@ class NotificationResource extends Resource
                 Forms\Components\TextInput::make('nama_user')
                     ->label('Nama User')
                     ->required()
+                    ->disabled()
                     ,
             ]);
     }

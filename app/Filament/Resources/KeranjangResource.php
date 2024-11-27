@@ -45,35 +45,49 @@ class KeranjangResource extends Resource
                     ->placeholder('KR000')
                     ->required()
                     ,
-                Forms\Components\TextInput::make('userid')
+                Forms\Components\Select::make('userid')
                     ->label('User ID')
-                    ->placeholder('US000')
-                    ->required()
-                    ,
+                     ->relationship('pengguna', 'userid') // Ensure the relationship name and display column are correct
+                     ->preload()
+                     ->searchable()
+                     ->required()
+                     ->reactive()
+                     ->afterStateUpdated(function (callable $set, $state) {
+                         $pengguna = \App\Models\pengguna::find($state);
+                         $set('nama_user', $pengguna?->nama);
+                     }),
                 Forms\Components\TextInput::make('nama_user')
                     ->label('Nama User')
                     ->required()
+                    ->disabled()
                     ,
+                Forms\Components\Select::make('id_produk')
+                    ->label('ID Produk')
+                    ->relationship('produk', 'id_produk') // Ensure the relationship name and display column are correct
+                    ->searchable()
+                    ->preload()
+                    ->reactive()
+                    ->required()
+                    ->afterStateUpdated(function (callable $set, $state) {
+                        $produk = \App\Models\Produk::find($state);
+                        $set('nama_produk', $produk?->nama_produk);
+                        $set('harga_produk', $produk?->harga_produk);
+                    }),
                 Forms\Components\TextInput::make('nama_produk')
                     ->label('Nama Produk')
                     ->required()
+                    ->disabled()
                     ,
                 Forms\Components\TextInput::make('harga_produk')
                     ->label('Harga Produk')
                     ->required()
+                    ->disabled()
+
                     ,
-                Forms\Components\TextInput::make('unit_produk')
-                    ->label('Unit Produk')
+                Forms\Components\TextInput::make('quantity')
+                    ->label('Quantity')
                     ->required()
                     ,
-                Forms\Components\FileUpload::make('image') 
-    ->label('Gambar Produk')
-    ->image() // Optimizes for image uploads
-    ->required() // Make the upload required
-    ->disk('public') // Choose the storage disk (e.g., 'public', 's3')
-    ->directory('product-images') // Specify the directory to store the images
-    ->visibility('public') // Set the visibility of the uploaded files
-
     ]);
             
     }
@@ -94,6 +108,10 @@ class KeranjangResource extends Resource
                     ->label('Nama User')
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('id_produk')
+                    ->label('ID Produk')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('nama_produk')
                     ->label('Nama Produk')
                     ->sortable()
@@ -102,17 +120,10 @@ class KeranjangResource extends Resource
                     ->label('Harga Produk')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('unit_produk')
+                Tables\Columns\TextColumn::make('quantity')
                     ->label('Unit Produk')
                     ->sortable()
                     ->searchable(),
-                    Tables\Columns\TextColumn::make('image')
-        ->label('Gambar Produk')
-        ->formatStateUsing(function (string $state) {
-            return basename($state); // Extract the filename from the path
-        })
-        ->sortable()
-        ->searchable(),
             ])
             ->filters([
                 //

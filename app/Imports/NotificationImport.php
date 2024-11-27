@@ -2,8 +2,8 @@
 
 namespace App\Imports;
 
-use App\Models\Notification;
-use App\Models\Pengguna;
+use App\Models\notification;
+use App\Models\pengguna;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -16,14 +16,15 @@ class NotificationImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        $pengguna = Pengguna::find($row['userid']);
 
-        return new Notification([
+        // Find the pengguna by 'userid'
+
+        return new notification([
             'id_notif' => $row['id_notif'],
             'userid' => $row['userid'],
             'notifikasi' => $row['notifikasi'],
             'objek' => $row['objek'],
-            'nama_user' => $row['nama_user'],
+            'nama_user' => \App\Models\Pengguna::find($row['userid'])?->nama,
         ]);
     }
 }

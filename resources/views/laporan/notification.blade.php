@@ -18,7 +18,14 @@
             border: 1px solid #ddd;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+        }
+        th:nth-child(odd) {
+            background-color: #45a049; /* Slightly darker green for odd columns */
+        }
+        th:nth-child(even) {
+            background-color: #4CAF50; /* Green background for even columns */
         }
     </style>
 </head>

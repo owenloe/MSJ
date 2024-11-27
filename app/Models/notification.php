@@ -16,6 +16,23 @@ class notification extends Model
             'objek',
             'nama_user',
     ];
+
+     public function pengguna()
+    {
+        return $this->belongsTo(pengguna::class, 'userid');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // This will be triggered before a new model is inserted into the database
+        static::creating(function ($model) {
+        $pengguna = \App\Models\Pengguna::find($model->userid);
+        $model->nama_user = $pengguna?->nama;
+    });
+    }
+    
     protected $primaryKey = 'id_notif';
     public $incrementing = false;
 }

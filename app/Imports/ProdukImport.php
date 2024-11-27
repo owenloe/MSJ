@@ -6,7 +6,7 @@ use App\Models\Produk;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class ProdukImport implements ToModel
+class ProdukImport implements ToModel , WithHeadingRow
 {
     /**
      * @param array $row
@@ -21,6 +21,7 @@ class ProdukImport implements ToModel
             'kategori_produk' => $row['kategori_produk'],
             'quantity_produk' => $row['quantity_produk'],
             'harga_produk' => $row['harga_produk'],
+            'modal_produk' => $row['modal_produk'],
             'berat' => $row['berat'],
             'jenis' => $row['jenis'],
             'ukuran' => $row['ukuran'],

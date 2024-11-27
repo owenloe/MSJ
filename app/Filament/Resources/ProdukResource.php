@@ -19,6 +19,8 @@ use Filament\Forms\Components\FileUpload;
 use Illuminate\Support\Facades\Storage;
 use Filament\Notifications\Notification;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Columns\ImageColumn;
+
 
 
 class ProdukResource extends Resource
@@ -60,29 +62,33 @@ class ProdukResource extends Resource
                     ->required()
                     ,
                 Forms\Components\TextInput::make('harga_produk')
+                    ->label('Harga Jual Produk')
+                    ->required()
+                    ,
+                Forms\Components\TextInput::make('modal_produk')
                     ->label('Modal Produk')
                     ->required()
                     ,
-                Forms\Components\Select::make('berat')
-                ->label('Berat')
-                ->options([
-        '3KG' => '3 KG',
-        '5.5KG' => '5.5 KG',
-        '12KG' => '12 KG',
-        '50KG' => '50 KG',
-    ])
-    ->required()
+                Forms\Components\TextInput::make('berat')
+                ->label('Berat (dalam kg)')
+                ->required()
                     ,
                 Forms\Components\Select::make('jenis')
-    ->label('Jenis')
-    ->options([
-        'Bright Gas' => 'Bright Gas',
-        'Elpiji' => 'Elpiji'
-    ])
-    ->required()
+                ->label('Jenis')
+                ->options([
+                    'Bright Gas' => 'Bright Gas',
+                    'Elpiji' => 'Elpiji'
+                ])
+                ->required()
                     ,
-                Forms\Components\TextInput::make('ukuran')
+                Forms\Components\Select::make('ukuran')
                     ->label('Ukuran')
+                    ->options([
+                        'S' => 'S',
+                        'M' => 'M',
+                        'L' => 'L',
+                        'XL' => 'XL'
+                    ])
                     ->required()
                     ,
                 Forms\Components\TextInput::make('warna')
@@ -90,11 +96,11 @@ class ProdukResource extends Resource
                     ->required()
                     ,
                 Forms\Components\FileUpload::make('image') 
-    ->label('Gambar Produk')
-    ->image() // Optimizes for image uploads // Make the upload required
-    ->disk('public') // Choose the storage disk (e.g., 'public', 's3')
-    ->directory('product-images') // Specify the directory to store the images
-    ->visibility('public') // Set the visibility of the uploaded files
+                    ->label('Gambar Produk')
+                    ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/jpg'])
+                    ->visibility('public') // Make the file public
+                    ->directory('public/fotos') // Choose the storage disk (e.g., 'public', 's3')
+                    ->preserveFilenames(), // Preserve the original filenames
             ]);
     }
 
@@ -119,11 +125,15 @@ class ProdukResource extends Resource
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('harga_produk')
+                    ->label('Harga Jual Produk')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('modal_produk')
                     ->label('Modal Produk')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('berat')
-                    ->label('Berat')
+                    ->label('Berat (dalam kg)')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('jenis')
@@ -138,13 +148,11 @@ class ProdukResource extends Resource
                     ->label('Warna')
                     ->searchable()
                     ->sortable(),
-                    Tables\Columns\TextColumn::make('image')
-        ->label('Gambar Produk')
-        ->formatStateUsing(function (string $state) {
-            return basename($state); // Extract the filename from the path
-        })
-        ->sortable()
-        ->searchable(),
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Gambar Produk')
+                    ->width('100')
+                    ->disk('public')
+                    ->url(fn ($record) => Storage::url($record->image)),
             ])
             ->filters([
                 //

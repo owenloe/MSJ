@@ -3,8 +3,6 @@
 namespace App\Imports;
 
 use App\Models\Keranjang;
-use App\Models\Pengguna;
-use App\Models\Produk;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -17,17 +15,15 @@ class KeranjangImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        $pengguna = Pengguna::find($row['userid']);
-        $produk = Produk::where('nama_produk', $row['nama_produk'])->first();
 
         return new Keranjang([
             'id_keranjang' => $row['id_keranjang'],
             'userid' => $row['userid'],
-            'nama_user' => $row['nama_user'],
-            'nama_produk' => $row['nama_produk'],
-            'harga_produk' => $row['harga_produk'],
-            'unit_produk' => $row['unit_produk'],
-            'image' => $row['image'],
+            'nama_user' => \App\Models\Pengguna::find($row['userid'])?->nama,
+            'id_produk' => $row['id_produk'],
+            'nama_produk' => \App\Models\Produk::find($row['id_produk'])?->nama_produk,
+            'harga_produk' => \App\Models\Produk::find($row['id_produk'])?->harga_produk,
+            'quantity' => $row['quantity'],
         ]);
     }
 }

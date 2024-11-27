@@ -30,10 +30,16 @@ class rating extends Model
         static::creating(function ($model) {
             
             // Set the nama_user field based on the selected userid
-            $model->nama_user = \App\Models\Pengguna::find($model->userid)?->nama;
-                if (empty($model->gambar_produk)) {
-                $model->gambar_produk = 'noInput.jpg';
-            }
+            $pengguna = \App\Models\Pengguna::find($model->userid);
+            $model->nama_user = $pengguna?->nama;
+        });
+        
+
+        static::updating(function ($model) {
+            
+            // Set the nama_user field based on the selected userid
+            $pengguna = \App\Models\Pengguna::find($model->userid);
+            $model->nama_user = $pengguna?->nama;
             
         });
     }

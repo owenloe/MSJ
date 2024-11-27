@@ -17,6 +17,7 @@ return new class extends Migration
             $table->char('kategori_produk',255);
             $table->integer('quantity_produk');
             $table->integer('harga_produk');
+            $table->integer('modal_produk');
             $table->char('berat',255);
             $table->char('jenis',255);
             $table->char('ukuran',255);
